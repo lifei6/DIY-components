@@ -9,6 +9,7 @@ export const ScrollViewWrapper = styled.div`
     ${props=>props.imgAddClass?'margin:0 -8px':'margin:0 0'};
     .scroll-content {
       display: flex;
+      flex-shrink:0;
       transform:translateX(-${props=>props.left}px);
       transition: transform 250ms ease;
     }

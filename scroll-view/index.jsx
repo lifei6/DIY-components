@@ -4,7 +4,7 @@ import React, { memo, useEffect, useRef, useState } from "react";
 import { ScrollViewWrapper } from "./style";
 
 const ScrollView = memo((props) => {
-  const { children,imgAddClass } = props;
+  const { children,imgAddClass=false } = props;
   const [rightShow, setRightShow] = useState(false);
   const [leftShow, setLeftShow] = useState(false);
   // console.log("scroll渲染--children:",children);
