@@ -78,3 +78,56 @@
 + 左右按钮点击事件设置新索引，需判断左右极限情况，需判断动画的走向
 + 指示器中元素点击事件处理，判断动画走向，设置新索引
 + 点击指示器显示与隐藏按钮，给予一个过渡动画(这里注意是高度向下变化，因此需固定盒子的底边，用绝对定位)
+
+
+## vue组件
+### Pagination为分页器
+
+--------
+功能
+:    实现分页功能
+---------
+1. 使用
+------------------
+需要父组件传递参数
+|name|description|example value|
+|:----:|:--------|:----|
+|pageNo|当前页码|index|
+|pageSize|一页数据个数|size|
+|total|总的数据条数|totalSize|
+|continues|分页器中间显示几个页面|5,7|
+--------------------
+传入参数即可使用
+
+2. 原理
+:   总页数
+
+        Math.ceil(this.total/this.pageSize)
+
+:   开始页码和结束页码
+    
+        startNumAndEndNum(){
+            const {pageNo,continues,totalPage} = this
+            let start = 0,end=0;
+            if(continues>totalPage){
+                start = 1
+                end = totalPage
+            }else{
+                start = pageNo - parseInt(continues/2)
+                end = pageNo + parseInt(continues/2)
+                if(start<1){
+                    start = 1
+                    end = continues
+                }else if(end>totalPage){
+                    start = totalPage - continues + 1
+                    end = totalPage
+                }
+            }
+            return {start,end}
+        }
+
+:   点击页码触发网络请求事件
+
+        pageHandler(page){
+            this.$emit('getPageNo',page)
+        }
