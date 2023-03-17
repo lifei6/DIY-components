@@ -100,6 +100,8 @@
 传入参数即可使用
 
 2. 原理
+
+需要计算的数据
 :   总页数
 
         Math.ceil(this.total/this.pageSize)
